@@ -1,6 +1,6 @@
 ## 🔢About
 
-fastapi Sudoku App
+FastAPI Sudoku App
 
 ## 🐍Conda
 
