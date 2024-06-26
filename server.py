@@ -1,8 +1,9 @@
 import random
 
 import numpy as np
-from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from optimization import Optimizer, Table
 
@@ -37,11 +38,8 @@ def _prepare_init_table(n_empty_cells: int) -> Table:
 
 
 # -----------------------------------------
-# server
+# define io data type
 # -----------------------------------------
-
-
-app = FastAPI()
 
 
 class CanSolve(BaseModel):
@@ -54,6 +52,22 @@ class NumberDict(BaseModel):
 
 class NEmptyCells(BaseModel):
     n_empty_cells: int
+
+
+# -----------------------------------------
+# server
+# -----------------------------------------
+
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/api/check-table-can-solve", response_model=CanSolve)
