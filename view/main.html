@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sudoku App</title>
+    <link rel="stylesheet" href="./src/disable-webkit-spin-button.css" />
+    <script src="https://cdn.tailwindcss.com/3.4.4"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1 class="text-3xl m-5 text-center">Sudoku App</h1>
+    </header>
+    <main class="text-center">
+      <div class="relative">
+        <div class="inline-grid absolute pointer-events-none grid-rows-3 grid-cols-3">
+          <div class="h-24 w-24 border border-black"></div>
+          <div class="h-24 w-24 border border-black"></div>
+          <div class="h-24 w-24 border border-black"></div>
+          <div class="h-24 w-24 border border-black"></div>
+          <div class="h-24 w-24 border border-black"></div>
+          <div class="h-24 w-24 border border-black"></div>
+          <div class="h-24 w-24 border border-black"></div>
+          <div class="h-24 w-24 border border-black"></div>
+          <div class="h-24 w-24 border border-black"></div>
+        </div>
+        <div id="sudoku-table" class="inline-grid grid-rows-9 grid-cols-9"></div>
+      </div>
+
+      <div class="flex justify-center">
+        <button class="px-4 py-1 rounded-md m-3 border-2 border-blue-700">Reset</button>
+        <button class="px-4 py-1 rounded-md m-3 border-2 border-blue-700">Solve</button>
+        <button class="px-4 py-1 rounded-md m-3 border-2 border-blue-700">Clear</button>
+      </div>
+    </main>
+    <script>
+      $(document).ready(function () {
+        const $grid = $("#sudoku-table");
+        for (var i = 1; i <= 9; i++) {
+          for (var j = 1; j <= 9; j++) {
+            $("<input>", {
+              type: "number",
+              min: 1,
+              max: 9,
+              class: "h-8 w-8 p-2.5 text-base outline-1 outline outline-gray-400",
+              "data-i": i,
+              "data-j": j,
+            }).appendTo($grid);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
