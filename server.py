@@ -72,7 +72,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount(path="/_static", app=StaticFiles(directory="static", html=True))
+app.mount(path="/_static", app=StaticFiles(directory="static"))
 
 
 @app.get("/", response_class=HTMLResponse)
