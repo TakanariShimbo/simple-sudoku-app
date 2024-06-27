@@ -6,8 +6,8 @@
     <title>Sudoku App</title>
     <script src="https://cdn.tailwindcss.com/3.4.4"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="./src/disable-webkit-spin-button.css" />
-    <link rel="icon" href="./src/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="/_static/src/disable-webkit-spin-button.css" />
+    <link rel="icon" href="/_static/src/favicon.svg" type="image/x-icon" />
     <link rel="shortcut icon" href="./src/favicon.svg" type="image/x-icon" />
   </head>
   <body>
@@ -37,7 +37,7 @@
       </div>
     </main>
     <script>
-      $(document).ready(function () {
+      function prepareSudokuTable() {
         const table = $("#sudoku-table");
         for (var i = 1; i <= 9; i++) {
           for (var j = 1; j <= 9; j++) {
@@ -51,6 +51,39 @@
             }).appendTo(table);
           }
         }
+      }
+    </script>
+    <script>
+      $(document).ready(function () {
+        prepareSudokuTable();
+
+        // prepare sample number Dict
+        const numberDict = {
+          1: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 7, 6: 0, 7: 5, 8: 0, 9: 0 },
+          2: { 1: 8, 2: 6, 3: 0, 4: 0, 5: 0, 6: 0, 7: 2, 8: 7, 9: 0 },
+          3: { 1: 0, 2: 0, 3: 1, 4: 6, 5: 5, 6: 0, 7: 0, 8: 0, 9: 0 },
+          4: { 1: 4, 2: 0, 3: 7, 4: 0, 5: 0, 6: 0, 7: 3, 8: 0, 9: 0 },
+          5: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 9, 6: 0, 7: 0, 8: 0, 9: 4 },
+          6: { 1: 6, 2: 2, 3: 9, 4: 3, 5: 4, 6: 8, 7: 1, 8: 5, 9: 7 },
+          7: { 1: 7, 2: 1, 3: 6, 4: 5, 5: 2, 6: 9, 7: 4, 8: 8, 9: 3 },
+          8: { 1: 9, 2: 3, 3: 2, 4: 4, 5: 8, 6: 6, 7: 7, 8: 1, 9: 5 },
+          9: { 1: 5, 2: 4, 3: 8, 4: 7, 5: 1, 6: 3, 7: 6, 8: 9, 9: 2 },
+        };
+
+        // request api test
+        const url = "/api/prepare-init-table";
+        $.ajax({
+          url: url,
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({ n_empty_cells: 40 }),
+          success: function (response) {
+            console.log(response);
+          },
+          error: function (xhr, status, error) {
+            console.log("Error:", xhr.responseText);
+          },
+        });
       });
     </script>
   </body>

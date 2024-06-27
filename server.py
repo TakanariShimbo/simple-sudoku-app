@@ -72,12 +72,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/", StaticFiles(directory="static", html=True))
+app.mount(path="/_static", app=StaticFiles(directory="static", html=True))
 
 
 @app.get("/", response_class=HTMLResponse)
 def index():
-    return FileResponse("index.html")
+    return FileResponse("static/index.html")
 
 
 @app.post("/api/check-table-can-solve", response_model=CanSolve)
