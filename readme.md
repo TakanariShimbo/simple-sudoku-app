@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ```sh
 # Please activate venv before executing it.
-uvicorn server:app --reload --host 0.0.0.0 --port 8000
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 You can check api references [here](http://localhost:8000/docs/) after building server.
