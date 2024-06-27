@@ -3,6 +3,9 @@ import random
 import numpy as np
 from pydantic import BaseModel
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 from optimization import Optimizer, Table
@@ -68,6 +71,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.mount("/", StaticFiles(directory="static", html=True))
+
+
+@app.get("/", response_class=HTMLResponse)
+def index():
+    return FileResponse("index.html")
 
 
 @app.post("/api/check-table-can-solve", response_model=CanSolve)
