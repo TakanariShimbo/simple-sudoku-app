@@ -38,7 +38,7 @@
     </main>
     <script>
       $(document).ready(function () {
-        const $grid = $("#sudoku-table");
+        const table = $("#sudoku-table");
         for (var i = 1; i <= 9; i++) {
           for (var j = 1; j <= 9; j++) {
             $("<input>", {
@@ -48,7 +48,7 @@
               class: "h-8 w-8 p-2.5 text-base outline-1 outline outline-gray-400",
               "data-i": i,
               "data-j": j,
-            }).appendTo($grid);
+            }).appendTo(table);
           }
         }
       });
