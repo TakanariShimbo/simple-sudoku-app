@@ -1,3 +1,9 @@
+/**
+ * Prepares the Sudoku table in the specified container.
+ * This function requires jQuery and Tailwind CSS to be imported.
+ *
+ * @param {string} mainId - The ID of the main container where the Sudoku table will be created.
+ */
 export function prepareSudokuTable(mainId) {
   const tableId = "sudoku-table";
   const tableLinesId = "sudoku-table-lines";
@@ -45,6 +51,12 @@ export function prepareSudokuTable(mainId) {
   }
 }
 
+/**
+ * Prepares buttons for Sudoku operations in the specified container.
+ * This function requires jQuery and Tailwind CSS to be imported.
+ *
+ * @param {string} mainId - The ID of the main container where the buttons will be created.
+ */
 export function prepareButtons(mainId) {
   const buttonAreaId = "button-area";
   const solveButtonId = "solve-button";
