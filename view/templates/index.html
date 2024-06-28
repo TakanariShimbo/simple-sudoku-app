@@ -72,6 +72,18 @@
 
         // request api test
         const url = "/api/prepare-init-table";
+        $.ajax({
+          url: url,
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify({ n_empty_cells: 40 }),
+          success: function (response) {
+            console.log(response);
+          },
+          error: function (xhr, status, error) {
+            console.log("Error:", xhr.responseText);
+          },
+        });
       });
     </script>
   </body>
