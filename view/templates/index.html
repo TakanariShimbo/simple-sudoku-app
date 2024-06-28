@@ -14,48 +14,13 @@
     <header>
       <h1 class="text-3xl m-5 text-center">Sudoku App</h1>
     </header>
-    <main class="text-center">
-      <div class="relative">
-        <div class="inline-grid absolute pointer-events-none grid-rows-3 grid-cols-3">
-          <div class="h-24 w-24 border border-black"></div>
-          <div class="h-24 w-24 border border-black"></div>
-          <div class="h-24 w-24 border border-black"></div>
-          <div class="h-24 w-24 border border-black"></div>
-          <div class="h-24 w-24 border border-black"></div>
-          <div class="h-24 w-24 border border-black"></div>
-          <div class="h-24 w-24 border border-black"></div>
-          <div class="h-24 w-24 border border-black"></div>
-          <div class="h-24 w-24 border border-black"></div>
-        </div>
-        <div id="sudoku-table" class="inline-grid grid-rows-9 grid-cols-9"></div>
-      </div>
+    <main id="main" class="text-center"></main>
+    <script type="module">
+      import { prepareSudokuTable, prepareButtons } from "./../static/init-index.js";
 
-      <div class="flex justify-center">
-        <button class="px-4 py-1 rounded-md m-3 border-2 border-blue-700">Reset</button>
-        <button class="px-4 py-1 rounded-md m-3 border-2 border-blue-700">Solve</button>
-        <button class="px-4 py-1 rounded-md m-3 border-2 border-blue-700">Clear</button>
-      </div>
-    </main>
-    <script>
-      function prepareSudokuTable() {
-        const table = $("#sudoku-table");
-        for (var i = 1; i <= 9; i++) {
-          for (var j = 1; j <= 9; j++) {
-            $("<input>", {
-              type: "number",
-              min: 1,
-              max: 9,
-              class: "h-8 w-8 p-2.5 text-base outline-1 outline outline-gray-400",
-              "data-i": i,
-              "data-j": j,
-            }).appendTo(table);
-          }
-        }
-      }
-    </script>
-    <script>
       $(document).ready(function () {
-        prepareSudokuTable();
+        prepareSudokuTable("main");
+        prepareButtons("main");
 
         // prepare sample number Dict
         const numberDict = {
@@ -72,18 +37,6 @@
 
         // request api test
         const url = "/api/prepare-init-table";
-        $.ajax({
-          url: url,
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify({ n_empty_cells: 40 }),
-          success: function (response) {
-            console.log(response);
-          },
-          error: function (xhr, status, error) {
-            console.log("Error:", xhr.responseText);
-          },
-        });
       });
     </script>
   </body>
