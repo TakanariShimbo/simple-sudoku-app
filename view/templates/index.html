@@ -6,9 +6,9 @@
     <title>Sudoku App</title>
     <script src="https://cdn.tailwindcss.com/3.4.4"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="/_static/src/disable-webkit-spin-button.css" />
-    <link rel="icon" href="/_static/src/favicon.svg" type="image/x-icon" />
-    <link rel="shortcut icon" href="/_static/src/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./../static/disable-webkit-spin-button.css" />
+    <link rel="icon" href="./../static/favicon.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="./../static/favicon.svg" type="image/x-icon" />
   </head>
   <body>
     <header>
@@ -72,18 +72,6 @@
 
         // request api test
         const url = "/api/prepare-init-table";
-        $.ajax({
-          url: url,
-          type: "POST",
-          contentType: "application/json",
-          data: JSON.stringify({ n_empty_cells: 40 }),
-          success: function (response) {
-            console.log(response);
-          },
-          error: function (xhr, status, error) {
-            console.log("Error:", xhr.responseText);
-          },
-        });
       });
     </script>
   </body>
