@@ -7,9 +7,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.requests import Request
-from starlette.responses import Response
 
 from optimization import Optimizer, Table
 
@@ -67,16 +64,6 @@ class NEmptyCells(BaseModel):
 
 app = FastAPI()
 
-
-class JavaScriptMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next):
-        response: Response = await call_next(request)
-        if request.url.path.endswith(".js"):
-            response.headers["Content-Type"] = "application/javascript"
-        return response
-
-
-app.add_middleware(JavaScriptMiddleware)
 
 app.add_middleware(
     CORSMiddleware,
