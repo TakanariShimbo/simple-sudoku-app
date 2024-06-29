@@ -13,6 +13,10 @@
     <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
   </head>
   <body id="root">
-    <script type="text/babel" src="./../static/SudokuApp.jsx"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" data-type="module" data-presets="react" src="./../static/SudokuApp.jsx"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" data-type="module">
+      import { SudokuApp } from "./../static/SudokuApp.jsx";
+      ReactDOM.render(<SudokuApp />, document.getElementById("root"));
+    </script>
   </body>
 </html>

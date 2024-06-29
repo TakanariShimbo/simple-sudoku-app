@@ -120,7 +120,7 @@ const SudokuButtons = ({ handleReset, handleSolve }) => {
 ////////////////////////////////
 // APP
 ////////////////////////////////
-const SudokuApp = () => {
+export const SudokuApp = () => {
   const initialNumberDict = {
     1: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 7, 6: 0, 7: 5, 8: 0, 9: 0 },
     2: { 1: 8, 2: 6, 3: 0, 4: 0, 5: 0, 6: 0, 7: 2, 8: 7, 9: 0 },
@@ -178,5 +178,3 @@ const SudokuApp = () => {
     </>
   );
 };
-
-ReactDOM.render(<SudokuApp />, document.getElementById("root"));
