@@ -58,7 +58,7 @@ const TableLines = () => {
   );
 };
 
-const TableCells = ({ numberArray, handleTableUpdate }) => {
+const TableCells = ({ numberArray, handleUpdate }) => {
   return (
     <div className="inline-grid grid-rows-9 grid-cols-9">
       {numberArray.map((row, i) => (
@@ -70,7 +70,7 @@ const TableCells = ({ numberArray, handleTableUpdate }) => {
               min={1}
               max={9}
               value={value || ""}
-              onChange={(e) => handleTableUpdate(e, i, j)}
+              onChange={(e) => handleUpdate(e, i, j)}
               className="h-8 w-8 p-2.5 text-base outline-1 outline outline-gray-400"
             />
           ))}
@@ -80,11 +80,11 @@ const TableCells = ({ numberArray, handleTableUpdate }) => {
   );
 };
 
-const SudokuTable = ({ numberArray, handleTableUpdate }) => {
+const SudokuTable = ({ numberArray, handleUpdate }) => {
   return (
     <div className="relative">
       <TableLines />
-      <TableCells numberArray={numberArray} handleTableUpdate={handleTableUpdate} />
+      <TableCells numberArray={numberArray} handleUpdate={handleUpdate} />
     </div>
   );
 };
@@ -140,7 +140,7 @@ const SudokuApp = () => {
     setNumberArray(initialNumberArray);
   }, []);
 
-  const handleTableUpdate = (e, i, j) => {
+  const handleUpdate = (e, i, j) => {
     const value = parseInt(e.target.value);
     if (value < 1 || value > 9 || initialNumberArray[i][j] !== 0) {
       e.target.value = initialNumberArray[i][j];
@@ -171,7 +171,7 @@ const SudokuApp = () => {
       </header>
       <main>
         <div className="text-center">
-          <SudokuTable numberArray={numberArray} handleTableUpdate={handleTableUpdate} />
+          <SudokuTable numberArray={numberArray} handleUpdate={handleUpdate} />
           <SudokuButtons handleReset={handleReset} handleSolve={handleSolve} />
         </div>
       </main>
