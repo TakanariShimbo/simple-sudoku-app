@@ -6,7 +6,6 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware
 
 from optimization import Optimizer, Table
 
@@ -64,14 +63,6 @@ class NEmptyCells(BaseModel):
 
 app = FastAPI()
 
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 app.mount(path="/static", app=StaticFiles(directory="view/static"), name="static")
 app.mount(path="/templates", app=StaticFiles(directory="view/templates"), name="templates")
