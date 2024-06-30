@@ -26,23 +26,10 @@ export const SudokuApp = () => {
   }, []);
 
   const handleUpdate = (e, i, j) => {
-    let value = e.target.value;
-    if (initNumberArray[i][j] !== 0) {
-      value = initNumberArray[i][j];
-      return;
-    }
-
-    let intValue = parseInt(value);
-    if (isNaN(intValue)) {
-      value = "";
-      intValue = 0;
-    } else if (intValue < 1 || intValue > 9) {
-      value = "";
-      intValue = 0;
-    }
-    const newNumberArray = numberArray.map((row) => [...row]);
-    newNumberArray[i][j] = intValue;
-    setNumberArray(newNumberArray);
+    const intValue = parseInt(e.target.value);
+    const updatedNumberArray = numberArray.map((row) => [...row]);
+    updatedNumberArray[i][j] = isNaN(intValue) || intValue < 1 || intValue > 9 ? 0 : intValue;
+    setNumberArray(updatedNumberArray);
   };
 
   const handleChange = () => {
@@ -69,7 +56,7 @@ export const SudokuApp = () => {
       </header>
       <main>
         <div className="text-center">
-          <SudokuTable handleUpdate={handleUpdate} />
+          <SudokuTable numberArray={numberArray} initNumberArray={initNumberArray} handleUpdate={handleUpdate} />
           <SudokuButtons handleChange={handleChange} handleReset={handleReset} handleSolve={handleSolve} />
         </div>
       </main>

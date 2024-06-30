@@ -13,24 +13,32 @@ const TableLines = () => {
 
 /**
  * @param {Object} props
+ * @param {number[][]} props.numberArray
+ * @param {number[][]} props.initNumberArray
  * @param {function} props.handleUpdate
  * @returns {JSX.Element}
  */
-const TableCells = ({ handleUpdate }) => {
-  const initNumberArray = Array.from({ length: 9 }, () => Array(9).fill(0));
+const TableCells = ({ numberArray, initNumberArray, handleUpdate }) => {
+  const combinedArray = numberArray.map((row, i) =>
+    row.map((value, j) => ({
+      value: value,
+      hasInitValue: initNumberArray[i][j] !== 0,
+    }))
+  );
   return (
     <div className="inline-grid grid-rows-9 grid-cols-9">
-      {initNumberArray.map((row, i) => (
+      {combinedArray.map((row, i) => (
         <>
-          {row.map((value, j) => (
+          {row.map((cell, j) => (
             <input
               key={`${i}-${j}`}
               type="number"
               min={1}
               max={9}
-              value={value || ""}
+              value={cell.value || ""}
               onChange={(e) => handleUpdate(e, i, j)}
-              className="h-8 w-8 p-2.5 text-base outline-1 outline outline-gray-400"
+              className={`h-8 w-8 p-2.5 text-base outline-1 outline outline-gray-400 ${cell.hasInitValue ? "bg-gray-200" : ""}`}
+              readOnly={cell.hasInitValue}
             />
           ))}
         </>
@@ -41,14 +49,16 @@ const TableCells = ({ handleUpdate }) => {
 
 /**
  * @param {Object} props
+ * @param {number[][]} props.numberArray
+ * @param {number[][]} props.initNumberArray
  * @param {function} props.handleUpdate
  * @returns {JSX.Element}
  */
-export const SudokuTable = ({ handleUpdate }) => {
+export const SudokuTable = ({ numberArray, initNumberArray, handleUpdate }) => {
   return (
     <div className="relative">
       <TableLines />
-      <TableCells handleUpdate={handleUpdate} />
+      <TableCells numberArray={numberArray} initNumberArray={initNumberArray} handleUpdate={handleUpdate} />
     </div>
   );
 };
