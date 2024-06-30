@@ -4,6 +4,29 @@ import { prepareInitTable, solveTable } from "./fetchEndpoint.js";
 import { SudokuTable } from "./SudokuTable.jsx";
 import { SudokuButtons } from "./SudokuButtons.jsx";
 
+const Header = () => {
+  return (
+    <header>
+      <h1 className="text-3xl m-5 text-center">Sudoku App</h1>
+    </header>
+  );
+};
+
+const Footer = () => {
+  return (
+    <footer class="w-full absolute bottom-1 text-center">
+      Created by{" "}
+      <a href="https://github.com/TakanariShimbo" class="text-blue-700">
+        🌵 Takanari Shimbo
+      </a>
+      {", "}
+      <a href="https://github.com/shun-naganuma" class="text-blue-700">
+        🏀 Shun Naganuma
+      </a>
+    </footer>
+  );
+};
+
 /**
  * @returns {JSX.Element}
  */
@@ -51,15 +74,14 @@ export const SudokuApp = () => {
 
   return (
     <>
-      <header>
-        <h1 className="text-3xl m-5 text-center">Sudoku App</h1>
-      </header>
+      <Header />
       <main>
         <div className="text-center">
-          <SudokuTable numberArray={numberArray} initNumberArray={initNumberArray} handleUpdate={handleUpdate} />
           <SudokuButtons handleChange={handleChange} handleReset={handleReset} handleSolve={handleSolve} />
+          <SudokuTable numberArray={numberArray} initNumberArray={initNumberArray} handleUpdate={handleUpdate} />
         </div>
       </main>
+      <Footer />
     </>
   );
 };
