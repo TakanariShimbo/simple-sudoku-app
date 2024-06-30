@@ -2,7 +2,7 @@ import { useState, useEffect } from "./React";
 
 import { prepareInitTable, solveTable } from "./fetchEndpoint.js";
 import { SudokuTable } from "./SudokuTable.jsx";
-import { SudokuButtons } from "./SudokuButtons.jsx";
+import { UpperSudokuButtons, LowerSudokuButtons } from "./SudokuButtons.jsx";
 
 const Header = () => {
   return (
@@ -33,12 +33,16 @@ const Footer = () => {
 export const SudokuApp = () => {
   const [numberArray, setNumberArray] = useState(Array.from({ length: 9 }, () => Array(9).fill(0)));
   const [initNumberArray, setInitNumberArray] = useState(Array.from({ length: 9 }, () => Array(9).fill(0)));
+  const [historyNumberArray, setHistoryNumberArray] = useState([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
 
   const applyInitTable = async () => {
     const preparedNumberArray = await prepareInitTable(40);
     if (preparedNumberArray) {
       setNumberArray(preparedNumberArray.map((row) => [...row]));
       setInitNumberArray(preparedNumberArray.map((row) => [...row]));
+      setHistoryNumberArray([preparedNumberArray.map((row) => [...row])]);
+      setHistoryIndex(0);
     } else {
       console.error("Failed to prepare initial Sudoku table");
     }
@@ -53,6 +57,10 @@ export const SudokuApp = () => {
     const updatedNumberArray = numberArray.map((row) => [...row]);
     updatedNumberArray[i][j] = isNaN(intValue) || intValue < 1 || intValue > 9 ? 0 : intValue;
     setNumberArray(updatedNumberArray);
+    const newHistoryNumberArray = historyNumberArray.slice(0, historyIndex + 1);
+    newHistoryNumberArray.push(updatedNumberArray);
+    setHistoryNumberArray(newHistoryNumberArray);
+    setHistoryIndex(historyIndex + 1);
   };
 
   const handleChange = () => {
@@ -61,6 +69,8 @@ export const SudokuApp = () => {
 
   const handleReset = () => {
     setNumberArray(initNumberArray.map((row) => [...row]));
+    setHistoryNumberArray([initNumberArray.map((row) => [...row])]);
+    setHistoryIndex(0);
   };
 
   const handleSolve = async () => {
@@ -72,13 +82,30 @@ export const SudokuApp = () => {
     }
   };
 
+  const handleUndo = () => {
+    const newHistoryIndex = historyIndex - 1;
+    if (newHistoryIndex >= 0) {
+      setNumberArray(historyNumberArray[newHistoryIndex]);
+      setHistoryIndex(newHistoryIndex);
+    }
+  };
+
+  const handleRedo = () => {
+    const newHistoryIndex = historyIndex + 1;
+    if (newHistoryIndex < historyNumberArray.length) {
+      setNumberArray(historyNumberArray[newHistoryIndex]);
+      setHistoryIndex(newHistoryIndex);
+    }
+  };
+
   return (
     <>
       <Header />
       <main>
         <div className="text-center">
-          <SudokuButtons handleChange={handleChange} handleReset={handleReset} handleSolve={handleSolve} />
+          <UpperSudokuButtons handleChange={handleChange} handleReset={handleReset} handleSolve={handleSolve} />
           <SudokuTable numberArray={numberArray} initNumberArray={initNumberArray} handleUpdate={handleUpdate} />
+          <LowerSudokuButtons handleUndo={handleUndo} handleRedo={handleRedo} />
         </div>
       </main>
       <Footer />
