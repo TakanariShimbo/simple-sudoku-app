@@ -37,7 +37,8 @@ const TableCells = ({ numberArray, initNumberArray, handleUpdate }) => {
               max={9}
               value={cell.value || ""}
               onChange={(e) => handleUpdate(e, i, j)}
-              className={`h-8 w-8 p-2.5 text-base outline-1 outline outline-gray-400 focus:ring-0 ${cell.hasInitValue ? "bg-gray-200" : ""}`}
+              className={`h-8 w-8 p-2.5 text-base border-gray-400 focus:border-gray-400 outline-none focus:outline-none focus:ring-0 
+                ${cell.hasInitValue ? "bg-gray-200" : ""} ${cell.hasInitValue ? "bg-gray-200" : "focus:bg-blue-100"}`}
               readOnly={cell.hasInitValue}
             />
           ))}
