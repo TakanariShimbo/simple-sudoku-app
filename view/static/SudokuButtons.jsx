@@ -5,7 +5,10 @@
  */
 const ChangeButton = ({ handleClick }) => {
   return (
-    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button
+      className="w-24 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+      onClick={handleClick}
+    >
       Change
     </button>
   );
@@ -18,7 +21,10 @@ const ChangeButton = ({ handleClick }) => {
  */
 const ResetButton = ({ handleClick }) => {
   return (
-    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button
+      className="w-24 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+      onClick={handleClick}
+    >
       Reset
     </button>
   );
@@ -31,7 +37,10 @@ const ResetButton = ({ handleClick }) => {
  */
 const SolveButton = ({ handleClick }) => {
   return (
-    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button
+      className="w-24 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+      onClick={handleClick}
+    >
       Solve
     </button>
   );
@@ -61,7 +70,10 @@ export const UpperSudokuButtons = ({ handleChange, handleReset, handleSolve }) =
  */
 const UndoButton = ({ handleClick }) => {
   return (
-    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button
+      className="w-24 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+      onClick={handleClick}
+    >
       Undo
     </button>
   );
@@ -74,7 +86,10 @@ const UndoButton = ({ handleClick }) => {
  */
 const CheckButton = ({ handleClick }) => {
   return (
-    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button
+      className="w-24 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+      onClick={handleClick}
+    >
       Check
     </button>
   );
@@ -87,7 +102,10 @@ const CheckButton = ({ handleClick }) => {
  */
 const RedoButton = ({ handleClick }) => {
   return (
-    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button
+      className="w-24 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 m-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+      onClick={handleClick}
+    >
       Redo
     </button>
   );

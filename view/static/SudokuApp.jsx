@@ -8,7 +8,7 @@ import { UpperSudokuButtons, LowerSudokuButtons } from "./SudokuButtons.jsx";
 const Header = () => {
   return (
     <header>
-      <h1 className="text-3xl m-5 text-center">Sudoku App</h1>
+      <h1 className="text-3xl font-medium m-5 text-center">Sudoku App</h1>
     </header>
   );
 };
@@ -17,12 +17,17 @@ const Footer = () => {
   return (
     <footer class="w-full absolute bottom-1 text-center">
       Created by{" "}
-      <a href="https://github.com/TakanariShimbo" class="text-blue-700">
+      <a href="https://github.com/TakanariShimbo" class="text-blue-700 hover:underline">
         🌵 Takanari Shimbo
       </a>
       {", "}
-      <a href="https://github.com/shun-naganuma" class="text-blue-700">
+      <a href="https://github.com/shun-naganuma" class="text-blue-700 hover:underline">
         🏀 Shun Naganuma
+      </a>
+      <br />
+      Powered by{" "}
+      <a href="https://github.com/google/or-tools" class="text-blue-700 hover:underline">
+        OR-Tools
       </a>
     </footer>
   );
