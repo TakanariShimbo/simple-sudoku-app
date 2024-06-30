@@ -72,6 +72,19 @@ const UndoButton = ({ handleClick }) => {
  * @param {Function} props.handleClick
  * @returns {JSX.Element}
  */
+const CheckButton = ({ handleClick }) => {
+  return (
+    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+      Check
+    </button>
+  );
+};
+
+/**
+ * @param {Object} props
+ * @param {Function} props.handleClick
+ * @returns {JSX.Element}
+ */
 const RedoButton = ({ handleClick }) => {
   return (
     <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
@@ -87,10 +100,11 @@ const RedoButton = ({ handleClick }) => {
  * @param {Function} props.handleSolve
  * @returns {JSX.Element}
  */
-export const LowerSudokuButtons = ({ handleUndo, handleRedo }) => {
+export const LowerSudokuButtons = ({ handleUndo, handleCheck, handleRedo }) => {
   return (
     <div className="flex justify-center">
       <UndoButton handleClick={handleUndo} />
+      <CheckButton handleClick={handleCheck} />
       <RedoButton handleClick={handleRedo} />
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "./React";
 
-import { prepareInitTable, solveTable } from "./fetchEndpoint.js";
+import { prepareInitTable, solveTable, checkTableCanSolve } from "./fetchEndpoint.js";
 import { SudokuTable } from "./SudokuTable.jsx";
 import { UpperSudokuButtons, LowerSudokuButtons } from "./SudokuButtons.jsx";
 
@@ -90,6 +90,11 @@ export const SudokuApp = () => {
     }
   };
 
+  const handleCheck = async () => {
+    const canSolve = await checkTableCanSolve(numberArray);
+    alert(canSolve ? "So far, so good." : "There is a mistake somewhere.");
+  };
+
   const handleRedo = () => {
     const newHistoryIndex = historyIndex + 1;
     if (newHistoryIndex < historyNumberArray.length) {
@@ -105,7 +110,7 @@ export const SudokuApp = () => {
         <div className="text-center">
           <UpperSudokuButtons handleChange={handleChange} handleReset={handleReset} handleSolve={handleSolve} />
           <SudokuTable numberArray={numberArray} initNumberArray={initNumberArray} handleUpdate={handleUpdate} />
-          <LowerSudokuButtons handleUndo={handleUndo} handleRedo={handleRedo} />
+          <LowerSudokuButtons handleUndo={handleUndo} handleCheck={handleCheck} handleRedo={handleRedo} />
         </div>
       </main>
       <Footer />
