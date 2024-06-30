@@ -1,6 +1,7 @@
 import { useState, useEffect } from "./React";
 
 import { prepareInitTable, solveTable, checkTableCanSolve } from "./fetchEndpoint.js";
+import { Toast } from "./Toast.jsx";
 import { SudokuTable } from "./SudokuTable.jsx";
 import { UpperSudokuButtons, LowerSudokuButtons } from "./SudokuButtons.jsx";
 
@@ -35,6 +36,7 @@ export const SudokuApp = () => {
   const [initNumberArray, setInitNumberArray] = useState(Array.from({ length: 9 }, () => Array(9).fill(0)));
   const [historyNumberArray, setHistoryNumberArray] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [toastData, setToastData] = useState({ message: "", type: "success" });
 
   const applyInitTable = async () => {
     const preparedNumberArray = await prepareInitTable(40);
@@ -65,20 +67,23 @@ export const SudokuApp = () => {
 
   const handleChange = () => {
     applyInitTable();
+    setToastData({ message: "The probrem of the puzzle has been changed.", type: "success" });
   };
 
   const handleReset = () => {
     setNumberArray(initNumberArray.map((row) => [...row]));
     setHistoryNumberArray([initNumberArray.map((row) => [...row])]);
     setHistoryIndex(0);
+    setToastData({ message: "Reset successful.", type: "success" });
   };
 
   const handleSolve = async () => {
     const solvedNumberArray = await solveTable(numberArray);
     if (solvedNumberArray) {
       setNumberArray(solvedNumberArray);
+      setToastData({ message: "Solve successful.", type: "success" });
     } else {
-      console.error("Failed to solve Sudoku.");
+      setToastData({ message: "There is a mistake in the numbers entered so far.", type: "danger" });
     }
   };
 
@@ -87,12 +92,19 @@ export const SudokuApp = () => {
     if (newHistoryIndex >= 0) {
       setNumberArray(historyNumberArray[newHistoryIndex]);
       setHistoryIndex(newHistoryIndex);
+      setToastData({ message: "Undo successful.", type: "success" });
+    } else {
+      setToastData({ message: "No more actions to undo.", type: "danger" });
     }
   };
 
   const handleCheck = async () => {
     const canSolve = await checkTableCanSolve(numberArray);
-    alert(canSolve ? "So far, so good." : "There is a mistake somewhere.");
+    if (canSolve) {
+      setToastData({ message: "The numbers entered so far are correct.", type: "success" });
+    } else {
+      setToastData({ message: "There is a mistake in the numbers entered so far.", type: "danger" });
+    }
   };
 
   const handleRedo = () => {
@@ -100,11 +112,19 @@ export const SudokuApp = () => {
     if (newHistoryIndex < historyNumberArray.length) {
       setNumberArray(historyNumberArray[newHistoryIndex]);
       setHistoryIndex(newHistoryIndex);
+      setToastData({ message: "Redo successful.", type: "success" });
+    } else {
+      setToastData({ message: "No more actions to redo.", type: "danger" });
     }
+  };
+
+  const handleToastClose = () => {
+    setToastData({ message: "", type: "success" });
   };
 
   return (
     <>
+      <Toast toastData={toastData} onClose={handleToastClose} />
       <Header />
       <main>
         <div className="text-center">
