@@ -9,26 +9,26 @@ import { SudokuButtons } from "./SudokuButtons.jsx";
  */
 export const SudokuApp = () => {
   const [numberArray, setNumberArray] = useState(Array.from({ length: 9 }, () => Array(9).fill(0)));
-  const [initialNumberArray, setInitialNumberArray] = useState(Array.from({ length: 9 }, () => Array(9).fill(0)));
+  const [initNumberArray, setInitNumberArray] = useState(Array.from({ length: 9 }, () => Array(9).fill(0)));
 
-  const fetchInitialTable = async () => {
+  const applyInitTable = async () => {
     const preparedNumberArray = await prepareInitTable(40);
     if (preparedNumberArray) {
       setNumberArray(preparedNumberArray.map((row) => [...row]));
-      setInitialNumberArray(preparedNumberArray.map((row) => [...row]));
+      setInitNumberArray(preparedNumberArray.map((row) => [...row]));
     } else {
-      console.error("Failed to fetch initial Sudoku table");
+      console.error("Failed to prepare initial Sudoku table");
     }
   };
 
   useEffect(() => {
-    fetchInitialTable();
+    applyInitTable();
   }, []);
 
   const handleUpdate = (e, i, j) => {
     let value = e.target.value;
-    if (initialNumberArray[i][j] !== 0) {
-      value = initialNumberArray[i][j];
+    if (initNumberArray[i][j] !== 0) {
+      value = initNumberArray[i][j];
       return;
     }
 
@@ -46,11 +46,11 @@ export const SudokuApp = () => {
   };
 
   const handleChange = () => {
-    fetchInitialTable();
+    applyInitTable();
   };
 
   const handleReset = () => {
-    setNumberArray(initialNumberArray.map((row) => [...row]));
+    setNumberArray(initNumberArray.map((row) => [...row]));
   };
 
   const handleSolve = async () => {
@@ -69,7 +69,7 @@ export const SudokuApp = () => {
       </header>
       <main>
         <div className="text-center">
-          <SudokuTable numberArray={numberArray} handleUpdate={handleUpdate} />
+          <SudokuTable handleUpdate={handleUpdate} />
           <SudokuButtons handleChange={handleChange} handleReset={handleReset} handleSolve={handleSolve} />
         </div>
       </main>

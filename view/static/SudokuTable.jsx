@@ -13,14 +13,14 @@ const TableLines = () => {
 
 /**
  * @param {Object} props
- * @param {number[][]} props.numberArray
  * @param {function} props.handleUpdate
  * @returns {JSX.Element}
  */
-const TableCells = ({ numberArray, handleUpdate }) => {
+const TableCells = ({ handleUpdate }) => {
+  const initNumberArray = Array.from({ length: 9 }, () => Array(9).fill(0));
   return (
     <div className="inline-grid grid-rows-9 grid-cols-9">
-      {numberArray.map((row, i) => (
+      {initNumberArray.map((row, i) => (
         <>
           {row.map((value, j) => (
             <input
@@ -41,15 +41,14 @@ const TableCells = ({ numberArray, handleUpdate }) => {
 
 /**
  * @param {Object} props
- * @param {number[][]} props.numberArray
  * @param {function} props.handleUpdate
  * @returns {JSX.Element}
  */
-export const SudokuTable = ({ numberArray, handleUpdate }) => {
+export const SudokuTable = ({ handleUpdate }) => {
   return (
     <div className="relative">
       <TableLines />
-      <TableCells numberArray={numberArray} handleUpdate={handleUpdate} />
+      <TableCells handleUpdate={handleUpdate} />
     </div>
   );
 };
