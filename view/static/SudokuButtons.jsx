@@ -5,7 +5,7 @@
  */
 const ChangeButton = ({ handleClick }) => {
   return (
-    <button className="px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
       Change
     </button>
   );
@@ -18,7 +18,7 @@ const ChangeButton = ({ handleClick }) => {
  */
 const ResetButton = ({ handleClick }) => {
   return (
-    <button className="px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
       Reset
     </button>
   );
@@ -31,7 +31,7 @@ const ResetButton = ({ handleClick }) => {
  */
 const SolveButton = ({ handleClick }) => {
   return (
-    <button className="px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
+    <button className="w-24 px-4 py-1 rounded-md m-3 border-2 border-blue-700" onClick={handleClick}>
       Solve
     </button>
   );
