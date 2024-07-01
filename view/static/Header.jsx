@@ -118,9 +118,9 @@ const iconDict = {
  */
 export const Header = ({ title, lang, handleFlagClick }) => {
   return (
-    <header>
+    <header className="max-w-screen-sm mx-auto relative">
       <h1 className="text-3xl font-medium m-5 text-center">{title}</h1>
-      <button className="absolute top-6 right-6" onClick={handleFlagClick}>
+      <button className="absolute top-0 right-6" onClick={handleFlagClick}>
         {iconDict[lang]}
       </button>
     </header>

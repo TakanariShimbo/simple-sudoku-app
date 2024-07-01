@@ -9,36 +9,36 @@ import { SudokuTable } from "./SudokuTable.jsx";
 import { UpperSudokuButtons, LowerSudokuButtons } from "./SudokuButtons.jsx";
 
 /**
+ * @typedef {Object} ToastData
+ * @property {string} message
+ * @property {"success" | "danger" | "warning"} type
+ */
+
+const SUCCESS = "success";
+const DANGER = "danger";
+const INIT_LANG = "jp";
+
+/**
  * @returns {JSX.Element}
  */
 export const SudokuApp = () => {
-  /**
-   * @typedef {Object} ToastData
-   * @property {string} message
-   * @property {"success" | "danger" | "warning"} type
-   */
   /** @type {[ToastData, Function]} */
-  const [toastData, setToastData] = useState({ message: "", type: "success" });
-
+  const [toastData, setToastData] = useState({ message: "", type: SUCCESS });
   /** @type {[Texts, Function]} */
-  const [texts, setTexts] = useState(new Texts("jp"));
-
+  const [texts, setTexts] = useState(new Texts(INIT_LANG));
   /** @type {[number[][], Function]} */
   const [numberArray, setNumberArray] = useState(Array.from({ length: 9 }, () => Array(9).fill(0)));
-
   /** @type {[number[][], Function]} */
   const [initNumberArray, setInitNumberArray] = useState(Array.from({ length: 9 }, () => Array(9).fill(0)));
-
   /** @type {[number[][][], Function]} */
   const [historyNumberArray, setHistoryNumberArray] = useState([]);
-
   /** @type {[number, Function]} */
   const [historyIndex, setHistoryIndex] = useState(-1);
 
   const applyInitTable = async () => {
     const preparedNumberArray = await prepareInitTable(40);
     if (preparedNumberArray === null) {
-      setToastData({ message: texts.serverError, type: "danger" });
+      setToastData({ message: texts.serverError, type: DANGER });
       console.error("SERVER ERROR: The prepare-init-table endpoint is not responding.");
       return;
     }
@@ -70,20 +70,20 @@ export const SudokuApp = () => {
 
   const handleChange = () => {
     applyInitTable();
-    setToastData({ message: texts.probremChanged, type: "success" });
+    setToastData({ message: texts.probremChanged, type: SUCCESS });
   };
 
   const handleReset = () => {
     setNumberArray(initNumberArray.map((row) => [...row]));
     setHistoryNumberArray([initNumberArray.map((row) => [...row])]);
     setHistoryIndex(0);
-    setToastData({ message: texts.tableReset, type: "success" });
+    setToastData({ message: texts.tableReset, type: SUCCESS });
   };
 
   const handleSolve = async () => {
     const solvedNumberArray = await solveTable(numberArray);
     if (solvedNumberArray === null) {
-      setToastData({ message: texts.serverError, type: "danger" });
+      setToastData({ message: texts.serverError, type: DANGER });
       console.error("SERVER ERROR: The solve-table endpoint is not responding.");
       return;
     }
@@ -95,9 +95,9 @@ export const SudokuApp = () => {
       newHistoryNumberArray.push(solvedNumberArray);
       setHistoryNumberArray(newHistoryNumberArray);
       setHistoryIndex(historyIndex + 1);
-      setToastData({ message: texts.problemSolvedOk, type: "success" });
+      setToastData({ message: texts.problemSolvedOk, type: SUCCESS });
     } else {
-      setToastData({ message: texts.problemSolvedNg, type: "danger" });
+      setToastData({ message: texts.problemSolvedNg, type: DANGER });
     }
   };
 
@@ -106,24 +106,24 @@ export const SudokuApp = () => {
     if (newHistoryIndex >= 0) {
       setNumberArray(historyNumberArray[newHistoryIndex]);
       setHistoryIndex(newHistoryIndex);
-      setToastData({ message: texts.tableUndoOk, type: "success" });
+      setToastData({ message: texts.tableUndoOk, type: SUCCESS });
     } else {
-      setToastData({ message: texts.tableUndoNg, type: "danger" });
+      setToastData({ message: texts.tableUndoNg, type: DANGER });
     }
   };
 
   const handleCheck = async () => {
     const canSolve = await checkTableCanSolve(numberArray);
     if (canSolve === null) {
-      setToastData({ message: texts.serverError, type: "danger" });
+      setToastData({ message: texts.serverError, type: DANGER });
       console.error("SERVER ERROR: The check-table-can-solve endpoint is not responding.");
       return;
     }
 
     if (canSolve) {
-      setToastData({ message: texts.progressCheckedOk, type: "success" });
+      setToastData({ message: texts.progressCheckedOk, type: SUCCESS });
     } else {
-      setToastData({ message: texts.progressCheckedNg, type: "danger" });
+      setToastData({ message: texts.progressCheckedNg, type: DANGER });
     }
   };
 
@@ -132,14 +132,14 @@ export const SudokuApp = () => {
     if (newHistoryIndex < historyNumberArray.length) {
       setNumberArray(historyNumberArray[newHistoryIndex]);
       setHistoryIndex(newHistoryIndex);
-      setToastData({ message: texts.tableRedoOk, type: "success" });
+      setToastData({ message: texts.tableRedoOk, type: SUCCESS });
     } else {
-      setToastData({ message: texts.tableRedoNg, type: "danger" });
+      setToastData({ message: texts.tableRedoNg, type: DANGER });
     }
   };
 
   const handleToastClose = () => {
-    setToastData({ message: "", type: "success" });
+    setToastData({ message: "", type: SUCCESS });
   };
 
   return (
