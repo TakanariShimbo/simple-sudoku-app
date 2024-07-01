@@ -4,5 +4,6 @@ __pycache__
 sample.py
 test
 readme.md
+readme
 .env
 .env.sample

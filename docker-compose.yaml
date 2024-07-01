@@ -2,9 +2,9 @@ version: "3.8"
 
 services:
   fastapi-service:
-    container_name: fastapi-sudoku-app-container
+    container_name: simple-sudoku-app-container
 
-    image: takanarishimbo/fastapi-sudoku-app:v1.0.0
+    image: takanarishimbo/simple-sudoku-app:v1.0.0
 
     ports:
       - "${SERVER_PORT}:8000"
