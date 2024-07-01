@@ -1,11 +1,17 @@
 import { useState, useEffect } from "./React";
 
+/**
+ * @type {{ success: string, danger: string, warning: string }}
+ */
 const styleDict = {
   success: "text-green-500 bg-green-100 dark:bg-green-800 dark:text-green-200",
   danger: "text-red-500 bg-red-100 dark:bg-red-800 dark:text-red-200",
   warning: "text-orange-500 bg-orange-100 dark:bg-orange-700 dark:text-orange-200",
 };
 
+/**
+ * @type {{ success: JSX.Element, danger: JSX.Element, warning: JSX.Element }}
+ */
 const iconDict = {
   success: (
     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
@@ -20,7 +26,7 @@ const iconDict = {
  * @param {Object} props
  * @param {Object} props.toastData
  * @param {string} props.toastData.message
- * @param {string} props.toastData.type ('success', 'danger', 'warning')
+ * @param {"success" | "danger" | "warning"} props.toastData.type
  * @param {Function} props.onClose
  * @returns {JSX.Element}
  */
