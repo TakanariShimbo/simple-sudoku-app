@@ -1,0 +1,8 @@
+__pycache__
+.DS_Store
+.git
+sample.py
+test
+readme.md
+.env
+.env.sample

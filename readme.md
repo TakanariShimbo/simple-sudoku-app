@@ -2,6 +2,24 @@
 
 FastAPI Sudoku App
 
+## 🐋Docker
+
+- docker is required
+
+### Build server
+
+```bash
+# Please set the .env file before executing it.
+docker compose up -d
+```
+
+### Build image
+
+```bash
+# Please change the username and tag correctly.
+docker build -t takanarishimbo/fastapi-sudoku-app:v1.0.0 .
+```
+
 ## 🐍Conda
 
 - conda or miniconda is required
