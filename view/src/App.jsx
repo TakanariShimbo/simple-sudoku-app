@@ -21,7 +21,7 @@ const INIT_LANG = "jp";
 /**
  * @returns {JSX.Element}
  */
-export const SudokuApp = () => {
+const App = () => {
   /** @type {[ToastData, Function]} */
   const [toastData, setToastData] = useState({ message: "", type: SUCCESS });
   /** @type {[Texts, Function]} */
@@ -157,3 +157,5 @@ export const SudokuApp = () => {
     </div>
   );
 };
+
+export default App;

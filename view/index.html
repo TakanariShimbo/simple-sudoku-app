@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sudoku App</title>
+    <link rel="icon" type="image/svg+xml" href="./src/favicon.svg" />
+    <link rel="stylesheet" href="./src/disable-webkit-spin-button.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com/3.4.4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  </head>
+  <body id="root">
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/convertNumberType.js"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/fetchEndpoint.js"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/Toast.jsx"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/Texts.js"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/Header.jsx"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/Footer.jsx"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/SudokuTable.jsx"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/SudokuButtons.jsx"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/App.jsx"></script>
+    <script data-plugins="transform-modules-umd" type="text/babel" src="./src/main.jsx"></script>
+  </body>
+</html>

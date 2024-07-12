@@ -3,8 +3,7 @@ import random
 import numpy as np
 from pydantic import BaseModel
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
-from fastapi.responses import FileResponse
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from optimization import Optimizer, Table
@@ -64,13 +63,12 @@ class NEmptyCells(BaseModel):
 app = FastAPI()
 
 
-app.mount(path="/static", app=StaticFiles(directory="view/static"), name="static")
-app.mount(path="/templates", app=StaticFiles(directory="view/templates"), name="templates")
+app.mount(path="/view", app=StaticFiles(directory="view", html=True), name="view")
 
 
-@app.get("/", response_class=HTMLResponse)
-def index():
-    return FileResponse("view/templates/index.html")
+@app.get("/")
+def redirect_from_index_to_view():
+    return RedirectResponse(url="/view")
 
 
 @app.post("/api/check-table-can-solve", response_model=CanSolve)
