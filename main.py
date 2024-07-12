@@ -63,12 +63,12 @@ class NEmptyCells(BaseModel):
 app = FastAPI()
 
 
-app.mount(path="/view", app=StaticFiles(directory="view", html=True), name="view")
+app.mount(path="/home", app=StaticFiles(directory="view/dist/", html=True), name="home")
 
 
 @app.get("/")
 def redirect_from_index_to_view():
-    return RedirectResponse(url="/view")
+    return RedirectResponse(url="/home")
 
 
 @app.post("/api/check-table-can-solve", response_model=CanSolve)

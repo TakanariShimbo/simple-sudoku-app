@@ -1,4 +1,4 @@
-import { useState, useEffect } from "./React";
+import { useState, useEffect } from "react";
 
 /**
  * @type {{ success: string, danger: string, warning: string }}

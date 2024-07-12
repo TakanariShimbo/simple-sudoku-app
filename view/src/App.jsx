@@ -1,4 +1,4 @@
-import { useState, useEffect } from "./React";
+import { useState, useEffect } from "react";
 
 import { Toast } from "./Toast.jsx";
 import { Texts } from "./Texts.js";

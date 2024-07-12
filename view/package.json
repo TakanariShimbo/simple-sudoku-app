@@ -1,0 +1,27 @@
+{
+  "name": "vite-react-tailwind-template",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "vite-preview": "vite preview --port 8000 --host",
+    "static-preview": "http-server docs -p 8000 -c-1"
+  },
+  "dependencies": {
+    "flowbite-react": "^0.10.1",
+    "http-server": "^14.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "tailwindcss": "^3.4.4",
+    "vite": "^5.3.1"
+  }
+}
